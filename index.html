@@ -9,5 +9,22 @@
 
 <body>
 <p>HTML5で作成しました！</p>
+<form id="form1">
+  <input type="text" name="distance" id="distance" value="200">
+  <input type="text" name="time" id="time" value="2">
+  <input type="button" name="submit" value="計算" onclick="onButtonClick();">
+  <output name="output" id="output"></output>
+</form>
+
+<script type="text/javascript">
+  var forms = document.getElementById("form1");
+  var distance = forms.distance.value;
+  var time = forms.time.value;
+  var output = document.getElementById("output");
+  function onButtonClick() {
+    var speed = distance / time;
+    output.innerHTML = speed;
+  }
+</script>
 </body>
 </html>
