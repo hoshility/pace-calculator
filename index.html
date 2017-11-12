@@ -15,12 +15,11 @@
     <option value="mile">mile</option>
   </select>
   <input type="text" id="time" value="" placeholder="2">
-  hours
-  <!-- <select name="distanceUnits">
-    <option value="hour">hour</option>
-    <option value="min">minit</option>
-    <option value="sec">sec</option>
-  </select> -->
+  <select id="timeUnit">
+    <option value="0">hour</option>
+    <option value="1">min</option>
+    <option value="2">sec</option>
+  </select>
   <input type="button" value="計算" onclick="onButtonClick();">
   <output name="output" id="output"></output>
 </form>
@@ -31,11 +30,35 @@
     var forms = document.getElementById("form1");
     var distance = forms.distance.value;
     var distanceUnit = forms.distanceUnit.value;
+    var timeUnit = forms.timeUnit.value;
+    var timeUnitResult;
     var time = forms.time.value;
     var output = document.getElementById("output");
+    var speed;
+    /* 各種計算 */
+    // 速度の計算
+    // var speed = distance / time;
 
-    var speed = distance / time;
-    output.innerHTML = speed + " " + distanceUnit + " / hour";
+    // 表示結果の単位の出し分け
+    if ( timeUnit == 0 ) {
+      timeUnitResult = "hour";
+    } else if( timeUnit == 1) {
+      timeUnitResult = "min";
+    } else if( timeUnit == 2) {
+      timeUnitResult = "sec";
+    }
+    console.log(timeUnitResult);
+
+    // 選択した単位における速さの計算
+    if ( timeUnit == 0 ) {
+      speed = distance / time;
+    } else if( timeUnit == 1) {
+      speed = ( distance * 1/60 ) / time;
+    } else if( timeUnit == 2) {
+      speed = ( distance * 1/60 * 1/60 ) / time;
+    }
+
+    output.innerHTML = speed + " " + distanceUnit + " / " + timeUnitResult;
 
   }
 </script>
